@@ -44,7 +44,7 @@ Most important features include:
 
 * **Plugins managed using Vundle**! You can easily install or remove plugins, and they are installed into ``.vim/bundle/``. More info `here <https://github.com/gmarik/vundle>`_
 
-* **Smart autocompletion as you type**, sometimes using python instrospection (completion of module names, instance methods and attributes) and sometimes text-based (used words) (from version 4.0, it's even more intelligent!). Most of the time is automatically displayed, but you can force it to appear using ``Ctrl-space``.
+* **Smart autocompletion as you type**, sometimes using python instrospection (completion of module names, instance methods and attributes) and sometimes text-based (used words) (from version 4.0, it's even more intelligent! (if you enable rope)). And with neocomplcache, it even can autocomplete with typos, thanks to the fuzzy completion settings.
 
 * **Fuzzy file, code and command finder** (like Textmante or Sublime Text 2):
 
@@ -57,20 +57,19 @@ Most important features include:
   * ``,pe`` = same as ``,e`` but initiates the search with the path under the cursor.
 
 
-* **Jedi-vim for really neat python goodies!**:
+* **Ropevim for really neat python goodies!**:
 
   * **Go to definition** with ``,d``, or open the definition on a new tab with ``,D``.
-  * **Go to assignment** with ``,a``.
   * **Find occurrences** with ``,o``.
-  * And it is the power behind the magic python autocompletion.
+  * and many other things, learn more about them with ``:help ropevim.txt`` (or visiting `this site <https://bitbucket.org/agr/ropevim>`_).
+  * **Note:** to use ropevim you must enable rope on the ``.vimrc`` (search the line containing ``let g:pymode_rope = 0``). When enabled, I recommend you to launch vim from your project root for the first time, so the ``.ropeproject`` will be created there. Then you can also add new python paths on the created ``.ropeproject/config.py`` for better autocompletion and go-to-definition.
+ 
 
 * **Classes/module browser** that lists classes, functions, methods, and such of the current file, and navigates to them when ENTER is pressed. Toggle it with ``F4``.
 
 * **Pending tasks browser** pressing ``F2``. This reads the current file searching for comments that start with "TODO", "FIXME", and such, and shows them on a list that allows navigation similar to the class browser.
 
-* **Error checking of python code** using Pyflakes (it will detect unused variables or imports, syntax errors, and such).
-
-* Run **PEP8 validator** on the current python file with ``\8``, which also displays python errors found with Pyflakes.
+* **Error checking of code** using Syntastic (it will detect unused variables or imports, syntax errors, and such), for several languages, highlighting the errors and warnings in the code. You can open an errors list with ``\e``. In python, the error checking includes **pep8** validation, and **pylint**.
 
 * A really nice **python and php debugger**. `Here <http://www.youtube.com/watch?v=kairdgZCD1U&feature=player_embedded>`_ is a small tutorial about it, and I added some keyboard shortcuts to easy its usage (they should be used only once the debugger started!):
 
@@ -97,7 +96,7 @@ Most important features include:
 
 * Some settings for better **tabs and spaces handling**.
 
-* **Better file browser**, toggle it with ``F3``.
+* **Better file browser**, toggle it with ``F3``, or open it with your current file selected using ``,t``.
 
 * **Results count** while searching text.
 
@@ -145,7 +144,7 @@ Most important features include:
 
 * **2 spaces indentation for html and javascript** (can disable it removing two lines from the ``.vimrc``).
 
-* **Thousands of code snippets for many languages** with SnipMate. Example, in python you can write ``cl`` and press ``Ctrl-k``, and it will insert the boilerplate code of a common python class (then use ``Ctrl-k`` to navigate the snippet fields).
+* **Thousands of code snippets for many languages** with SnipMate. Example, in python you can write ``cl`` and press ``tab`` (while in inser mode), and it will insert the boilerplate code of a common python class (then use ``tab`` to navigate the snippet fields).
 
 * **Zen coding** for html: generate lots of html code writing simple and short expressions.
   Example:
@@ -178,7 +177,7 @@ Most important features include:
 
   Learn more on the plugin `site <https://github.com/mattn/zencoding-vim/>`_.
 
-* **Git integration**, with commands such as: ``:GitStatus``, ``:GitDiff``, ``:GitBlame``, ``:GitLog``, ``:GitCommit``, or simply ``:Git`` with your own command. Also includes key mappings and syntax highlighting for git displays. And displays icons on the side of each line based on the result of a git diff of the current file (example: if you added a line and still didn't commit the file, that line will have a green ``+`` on its side).
+* **Git and other vcs integration**, with commands such as: ``:GitStatus``, ``:GitDiff``, ``:GitBlame``, ``:GitLog``, ``:GitCommit``, or simply ``:Git`` with your own command. Key mappings and syntax highlighting for git displays. Displays icons on the side of each line based on the result of a diff of the current file (example: if you added a line and still didn't commit the file, that line will have a green ``+`` on its side). And finally, when on a changed file you can **jump through changes** using ``\sn`` and ``\sp``.
 
 * **Better python indentation**.
 
@@ -186,11 +185,27 @@ Most important features include:
 
 * **Indentation defined text objects** for the editing language, named ``i``. For example, you can change an entire indented code block with ``cii``, or the indented block and its header line with ``cai`` (also yank, delete, ...).
 
+* **Python class and method/function text objects** for the editing language, named ``C`` and ``M``. For example, you can change an entire function content with ``ciM``, or delete a class including its header with ``daC``.
+
+* **Run the curren python file** and display the output on a split with ``\r``.
+
+* **Insert and remove ipdb breakpoints** with ``\b``.
+
 * **Copy history navigation** using the YankRing plugin, which allows you to cicle the vim clipboard with ``Ctrl-p`` and ``Ctrl-n``, and many other features (described `here <http://www.vim.org/scripts/script.php?script_id=1234>`_).
 
 * **Insert ipdb breakpoints** with ``\b``.
 
 * **Automatically sort python imports** using ``:Isort``.
+
+* **Persistent undos** modify file, exit vim, reopen file, and you can undo changes done on the previous session.
+
+* **Better paths** for temporary swap files, backups, and persistent undos (all of them stored under ``~/.vim/dirs``).
+
+* **Drag visual blocks** (blocks selected on ``Ctrl-v`` and ``Shift-v`` visual modes) with ``Shift-Alt-arrows``, or even **duplicate** them with ``D``.
+
+* **Simple window chooser**: press ``-`` and you will see big green letters for each window. Just press the letter of the window you want to activate.
+
+* **Paint css color** values with the actual color.
 
 Super easy installation
 -----------------------
@@ -252,18 +267,24 @@ Thanks to some people from `Pyar <http://python.org.ar>`_, who show me vim for t
 * Facundo Batista
 * Luciano Bello
 
+Also, thanks to:
+
+* Felipe Lerena
+* Ivan Alejandro
+
 And thanks to all the developers of the plugins that I simply use here:
 
 * `Plugins manager (Vundle) <https://github.com/gmarik/vundle>`_
 * `Vundle autoinstalation <http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/>`_
+* `Python mode (smarter autocompletion, smarter go to definition and find occurrences, better python indentation, doc, refactor utilities, lints and pep8 checkers, python motion and operators, better python highlighting, run python and ipdb breakpoints) <https://github.com/klen/python-mode>`_
 * `Debugger (vim-debug) <http://github.com/jabapyth/vim-debug/>`_
 * `GVim color scheme (wombat) <http://www.vim.org/scripts/script.php?script_id=1778>`_
 * `Consoles as buffers (ConqueShell) <http://www.vim.org/scripts/script.php?script_id=2771>`_
-* `Autocompletion (autocomplpop) <http://www.vim.org/scripts/script.php?script_id=1879>`_
+* `Autocompletion (neocomplcache) <https://github.com/Shougo/neocomplcache.vim>`_
 * `Better file browser (NERDTree) <https://github.com/scrooloose/nerdtree>`_
 * `Class/module browser (Tagbar) <https://github.com/majutsushi/tagbar>`_
 * `Pending tasks list (TaskList) <http://www.vim.org/scripts/script.php?script_id=2607>`_
-* `Python code checker (Pyflakes-vim) <http://www.vim.org/scripts/script.php?script_id=2441>`_
+* `Code checker (Syntastic) <https://github.com/scrooloose/syntastic>`_
 * `Search results counter (IndexedSearch) <http://www.vim.org/scripts/script.php?script_id=1682>`_
 * `Code commenter (NERDCommenter) <https://github.com/scrooloose/nerdcommenter>`_
 * `HTML/XML tags navigation (Matchit) <http://www.vim.org/scripts/script.php?script_id=39>`_
@@ -278,16 +299,15 @@ And thanks to all the developers of the plugins that I simply use here:
 * `AutoClose <https://github.com/Townk/vim-autoclose>`_
 * `YankRing <http://www.vim.org/scripts/script.php?script_id=1234>`_
 * `Indent object <http://github.com/michaeljsmith/vim-indent-object>`_
-* `Git diff icons <http://github.com/airblade/vim-gitgutter>`_
+* `Git and other vcs diff icons <http://github.com/mhinz/vim-signify>`_
 * `Relative line numbers <http://github.com/myusuf3/numbers.vim>`_
 * `Snippets manager (SnipMate) <http://github.com/garbas/vim-snipmate>`_ (plus dependencies `addon-mw-utils <http://github.com/MarcWeber/vim-addon-mw-utils>`_ and `tlib <http://github.com/tomtom/tlib_vim>`_ )
 * `SnipMate snippets compilation <http://github.com/honza/vim-snippets>`_
-* `Search and read python documentation (PyDoc) <https://github.com/fs111/pydoc.vim>`_
-* `PEP8 checker (with shows pyflakes errors too) <https://github.com/nvie/vim-flake8>`_
-* `Better python indentation <https://github.com/vim-scripts/indentpython.vim--nianyang>`_
-* `Jedi-vim (python autocompletion, go to definition, find ocurrences and documentation display) <https://github.com/davidhalter/jedi-vim>`_
 * `Font patcher, grabbed from the original vim-powerline repo <https://github.com/Lokaltog/vim-powerline>`_
 * `Python imports sorter <https://github.com/fisadev/vim-isort>`_
+* `Visual blocks dragger <https://github.com/fisadev/dragvisuals.vim>`_
+* `Window chooser <https://github.com/t9md/vim-choosewin>`_
+* `Css colors painter <https://github.com/lilydjwg/colorizer>`_
 
 Optional: fancy symbols and breadcrumbs in the status line
 ----------------------------------------------------------
@@ -296,7 +316,7 @@ Airline allows you to use fancy symbols on the status line for breadcrumbs and i
 
 **Get the font patcher and dependencies**
 
-Grab the ``fontpatcher`` directory from this repo to some location on your computer (the patcher was written by Kim Silkebækken, the author of the original vim-powerline plugin). Then install the fontforge dependency: in Ubuntu you only need to run ``sudo apt-get install python-fontforge``. In other distros there should be a package with a similar name.
+Grab the ``fontpatcher`` directory from this repo to some location on your computer (the patcher was written by Kim Silkebækken, the author of the original vim-powerline plugin). Then install the ``argparse`` and ``fontforge`` dependencies: in Ubuntu you only need to run ``sudo apt-get install python-fontforge``. In other distros there should be packages with similar names.
 
 **Patch**
 
